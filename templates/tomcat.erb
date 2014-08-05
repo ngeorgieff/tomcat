@@ -1,5 +1,6 @@
 #!/bin/bash
 # description: Tomcat Start Stop Restart
+# Nikolay <-
 # processname: tomcat
 # chkconfig: 234 20 80
 JAVA_HOME=<%= scope.lookupvar('tomcat::java_home') %>
@@ -8,17 +9,51 @@ PATH=$JAVA_HOME/bin:$PATH
 export PATH
 CATALINA_HOME=<%= scope.lookupvar('tomcat::web_home') %>
 
-case $1 in
-start)
-sh $CATALINA_HOME/bin/startup.sh
-;;
-stop)
-sh $CATALINA_HOME/bin/shutdown.sh
-;;
-restart)
-sh $CATALINA_HOME/bin/shutdown.sh
-sh $CATALINA_HOME/bin/startup.sh
-;;
-esac
-exit 0
+start() {
+  if [ ! -f /var/lock/subsys/tomcat ]; then
+      echo -n $"Starting $prog: "
+      /bin/su tomcat /usr/local/tomcat/bin/startup.sh
 
+      RETVAL=$?
+      [ $RETVAL -eq 0 ] && touch /var/lock/subsys/tomcat
+      echo
+  fi
+  return $RETVAL
+}
+
+stop() {
+  echo -n $"Stopping $prog: "
+  /usr/local/tomcat/bin/shutdown.sh
+  RETVAL=$?
+  [ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/tomcat
+
+  return $RETVAL
+}
+
+
+restart() {
+  stop
+  start
+}
+
+
+case "$1" in
+  start)
+        start
+        ;;
+  debug)
+        debug
+        ;;
+  stop)
+        stop
+        ;;
+  restart)
+        stop
+        start
+        ;;
+  *)
+  echo "Usage: $0 {start|stop|restart}"
+  exit 1
+esac
+
+exit $RETVAL
