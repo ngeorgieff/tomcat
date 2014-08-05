@@ -199,7 +199,7 @@ if ( $tomcat_version in [ '7', '8' ] ) {
         command => "wget ${tomcatDownloadURI}",
         unless  => "test -e ${tomcat_file_name}.tar.gz",
         timeout => 1200,
-        require => File[$tomcat_path],
+        #require => File[$tomcat_path],
         }
 }
     
