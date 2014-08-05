@@ -168,12 +168,12 @@ if ( $java_version in [ '7', '8' ] ) {
         require => Exec['java_path'];
     }
 
-    file {$tomcat_path:
-        ensure  => directory,
-        recurse => true,
-        owner   => $tomcat_user,
-        group   => $tomcat_user,
-        require => Exec['set_env'];
+    #    file {$tomcat_path:
+    #    ensure  => directory,
+    #    recurse => true,
+    #    owner   => $tomcat_user,
+    #    group   => $tomcat_user,
+    #    require => Exec['set_env'];
     }
 
 case $tomcat_version {
@@ -205,8 +205,8 @@ if ( $tomcat_version in [ '7', '8' ] ) {
     
 if ( $tomcat_version in [ '7', '8' ] ) {
     exec { 'extract_tomcat':
-        cwd     => "${tomcat_path}/",
-        command => "tar xzf /tmp/${tomcat_file_name}.tar.gz -C /usr/local/ && ln -s /usr/local/${tomcat_file_name} /usr/local/tomcat ; chown -R $tomcat_user:$tomcat_user ${tomcat_path}/",
+        cwd     => "/usr/local/",
+        command => "tar xzf /tmp/${tomcat_file_name}.tar.gz -C /usr/local/ && ln -s /usr/local/${tomcat_file_name} /usr/local/tomcat ; chown -R $tomcat_user:$tomcat_user ${tomcat_path}/ && rm -f /tmp/${tomcat_file_name}.tar.gz",
         creates => $web_home,
         unless  => "test -e ${tomcat_file_name}",
         require => Exec['get_tomcat'],
