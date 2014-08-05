@@ -174,7 +174,7 @@ if ( $java_version in [ '7', '8' ] ) {
     #    owner   => $tomcat_user,
     #    group   => $tomcat_user,
     #    require => Exec['set_env'];
-    }
+    #}
 
 case $tomcat_version {
     '8': {
