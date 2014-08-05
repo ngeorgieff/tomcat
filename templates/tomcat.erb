@@ -12,7 +12,7 @@ CATALINA_HOME=<%= scope.lookupvar('tomcat::web_home') %>
 start() {
   if [ ! -f /var/lock/subsys/tomcat ]; then
       echo -n $"Starting $prog: "
-      /bin/su tomcat /usr/local/tomcat/bin/startup.sh
+      /usr/bin/sudo -u tomcat /usr/local/tomcat/bin/startup.sh
 
       RETVAL=$?
       [ $RETVAL -eq 0 ] && touch /var/lock/subsys/tomcat
