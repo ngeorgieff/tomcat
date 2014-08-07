@@ -171,7 +171,7 @@ if ( $java_version in [ '7', '8' ] ) {
     file_line { 'Adding enviroment variable for CATALINA_BASE':
     path    => '/etc/environment',
     line    => "CATALINA_BASE=${tomcat_path}",
-    unless  => "grep 'CATALINA' /etc/environment",
+    #unless  => "grep 'CATALINA' /etc/environment",
     }
 
     exec { 'set_env':
