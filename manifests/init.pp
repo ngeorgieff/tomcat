@@ -163,29 +163,19 @@ if ( $java_version in [ '7', '8' ] ) {
         require => Exec['set_java_home'],
     }
     
-    #exec { 'set_env_paths':
-    #    command => "echo 'CATALINA_BASE=${tomcat_path}' >> ${env_path}",
-    #    unless  => "grep 'JAVA\|CATALINA' /etc/environment",
-    #}
-    
-    file_line { 'Adding enviroment variable for CATALINA_BASE':
-    path    => '/etc/environment',
-    line    => "CATALINA_BASE=${tomcat_path}",
-    #unless  => "grep 'CATALINA' /etc/environment",
+    file_line { 'Adding CATALINA_BASE environment variable':
+        path    => '/etc/environment',
+        line    => "CATALINA_BASE=${tomcat_path}/",
     }
 
+    file_line { 'Adding JAVA_HOME envoronment variable':
+        path    => '/etc/environment',
+        line    => "CATALINA_BASE=${java_path}/",
+    }
     exec { 'set_env':
         command => "bash -c 'source ${env_path}'",
         require => Exec['java_path'];
     }
-
-    #    file {$tomcat_path:
-    #    ensure  => directory,
-    #    recurse => true,
-    #    owner   => $tomcat_user,
-    #    group   => $tomcat_user,
-    #    require => Exec['set_env'];
-    #}
 
 case $tomcat_version {
     '8': {
