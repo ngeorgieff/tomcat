@@ -194,9 +194,9 @@ case $tomcat_version {
         $tomcat_file_name   = 'apache-tomcat-8.0.9'
         }
     '7': {
-        $tomcatDownloadURI  = 'http://mirror.metrocast.net/apache/tomcat/tomcat-7/v7.0.54/bin/apache-tomcat-7.0.54.tar.gz'
+        $tomcatDownloadURI  = 'http://mirror.cc.columbia.edu/pub/software/apache/tomcat/tomcat-7/v7.0.55/bin/apache-tomcat-7.0.55.tar.gz'
         $web_home           = $tomcat_path
-        $tomcat_file_name   = 'apache-tomcat-7.0.54'
+        $tomcat_file_name   = 'apache-tomcat-7.0.55'
         }
     default: {
         fail("Unsupported tomcat_version: ${tomcat_version}.  Implement me?")
