@@ -179,9 +179,9 @@ if ( $java_version in [ '7', '8' ] ) {
 
 case $tomcat_version {
     '8': {
-        $tomcatDownloadURI  = 'http://apache.osuosl.org/tomcat/tomcat-8/v8.0.9/bin/apache-tomcat-8.0.9.tar.gz'
+        $tomcatDownloadURI  = 'http://apache.osuosl.org/tomcat/tomcat-8/v8.0.14/bin/apache-tomcat-8.0.14.tar.gz'
         $web_home           = $tomcat_path
-        $tomcat_file_name   = 'apache-tomcat-8.0.9'
+        $tomcat_file_name   = 'apache-tomcat-8.0.14'
         }
     '7': {
         $tomcatDownloadURI  = 'http://mirror.cc.columbia.edu/pub/software/apache/tomcat/tomcat-7/v7.0.55/bin/apache-tomcat-7.0.55.tar.gz'
