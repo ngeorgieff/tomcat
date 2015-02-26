@@ -184,7 +184,7 @@ case $tomcat_version {
         $tomcat_file_name   = 'apache-tomcat-8.0.14'
         }
     '7': {
-        $tomcatDownloadURI  = 'http://mirrors.directorymix.com/apache/tomcat/tomcat-7/v7.0.57/bin//apache-tomcat-7.0.55.tar.gz'
+        $tomcatDownloadURI  = 'http://mirrors.directorymix.com/apache/tomcat/tomcat-7/v7.0.57/bin/apache-tomcat-7.0.57.tar.gz'
         $web_home           = $tomcat_path
         $tomcat_file_name   = 'apache-tomcat-7.0.55'
         }
