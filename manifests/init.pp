@@ -55,6 +55,12 @@ class tomcat
       $tomcat_path    = hiera('tomcat::tomcat_path',  '/usr/local/tomcat'),
       # Define  tomcat version. 7 or 8 
       $tomcat_version = hiera('tomcat::tomcat_version','8'),
+      # Define irror
+      $tomcat_mirror = hiera('tomcat::tomcat_mirror','https://is.it.ucla.edu/mirrors/tomcat'),
+      # Define Tomcat7 build
+      $tomcat8_build = hiera('tomcat::tomcat7_build','7.0.61'),      
+      # Define Tomcat8 build
+      $tomcat8_build = hiera('tomcat::tomcat8_build','8.0.21'),
       # Define tomcat user
       $tomcat_user    = hiera('tomcat::tomcat_user', 'tomcat'),
       )
@@ -179,14 +185,14 @@ if ( $java_version in [ '7', '8' ] ) {
 
 case $tomcat_version {
     '8': {
-        $tomcatDownloadURI  = 'http://mirrors.directorymix.com/apache/tomcat/tomcat-8/v8.0.14/bin/apache-tomcat-8.0.14.tar.gz'
+        $tomcatDownloadURI  = "${tomcat_mirror}/tomcat-${tomcat_version}/v${tomcat8_build}/bin/apache-tomcat-${tomcat8_build}.tar.gz"
         $web_home           = $tomcat_path
-        $tomcat_file_name   = 'apache-tomcat-8.0.14'
+        $tomcat_file_name   = "apache-tomcat-${tomcat8_build}"
         }
     '7': {
-        $tomcatDownloadURI  = 'http://mirrors.directorymix.com/apache/tomcat/tomcat-7/v7.0.57/bin/apache-tomcat-7.0.57.tar.gz'
+        $tomcatDownloadURI  = "${tomcat_mirror}/tomcat-${tomcat_version}/v${tomcat7_build}/bin/apache-tomcat-${tomcat7_build}.tar.gz"
         $web_home           = $tomcat_path
-        $tomcat_file_name   = 'apache-tomcat-7.0.55'
+        $tomcat_file_name   = "apache-tomcat-${tomcat7_build}"
         }
     default: {
         fail("Unsupported tomcat_version: ${tomcat_version}.  Implement me?")
