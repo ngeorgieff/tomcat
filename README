@@ -12,25 +12,5 @@ To include this module in nodes.pp on tomcat node follow the following example
     {
         include tomcat 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
+Test hook
