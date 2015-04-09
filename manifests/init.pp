@@ -26,18 +26,22 @@
 #  Specify tomcat path 
 #
 #  [*$javaDownloadURI*]
-#  Specify java download url  
-#  
-#  Authors
+#  Specify java download url
 #
-#  Boxupp Team <http://boxupp.com/>
+#  [*$tomcat_mirror*]
+#  Specify tomcat mirror url
 #  
-#  Nikolay Georgieff - Modified the module to configure tomcat to run as user tomcat
+#  [*$tomcat7_build*]
+#  Specify tomcat7 build
 #
-#  Copyright
-#  Copyright © 2014-2015 Paxcel Technologies (p) Ltd
-#  site : http://paxcel.net/   http://boxupp.com/
-
+#  [*$tomcat8_build*]
+#  Specify tomcat8 build
+#
+#  [*$tomcat_user*]
+#  Specify tomcat run user
+#
+#  [*$javaDownloadURI*]
+#  Specify java download url
 class tomcat
       (
       # Define java_version here . 7 or 8 
@@ -55,10 +59,10 @@ class tomcat
       $tomcat_path    = hiera('tomcat::tomcat_path',  '/usr/local/tomcat'),
       # Define  tomcat version. 7 or 8 
       $tomcat_version = hiera('tomcat::tomcat_version','8'),
-      # Define irror
+      # Define mirror (you need to point the URL to /apache/tomcat)
       $tomcat_mirror = hiera('tomcat::tomcat_mirror','https://is.it.ucla.edu/mirrors/tomcat'),
       # Define Tomcat7 build
-      $tomcat8_build = hiera('tomcat::tomcat7_build','7.0.61'),      
+      $tomcat8_build = hiera('tomcat::tomcat7_build','7.0.61'),
       # Define Tomcat8 build
       $tomcat8_build = hiera('tomcat::tomcat8_build','8.0.21'),
       # Define tomcat user
