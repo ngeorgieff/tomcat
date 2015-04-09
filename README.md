@@ -101,7 +101,7 @@ Sets tomcat8 build.
 
 ####`tomcat7_build`
 
-Sets tomca7 build.
+Sets tomcat7 build.
 
 ####`tomcat_user`
 
