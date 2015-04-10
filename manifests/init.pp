@@ -89,10 +89,12 @@ user { $tomcat_user:
     shell            => '/bin/bash',
     uid              => '8080',
 }
+
 group { $tomcat_user:
     ensure           => 'present',
     gid              => '8080',
 }
+
 case $platform {
     'x64': {
         $plat_filename = 'x64'
@@ -172,7 +174,12 @@ if ( $java_version in [ '7', '8' ] ) {
         unless  => "grep 'export PATH=\$JAVA_HOME/bin:\$PATH' ${env_path}",
         require => Exec['set_java_home'],
     }
-    
+
+    file { '/usr/java/latest':
+        ensure  => link,
+        target  => $java_home,
+    }
+
     file_line { 'Adding CATALINA_BASE environment variable':
         path    => '/etc/environment',
         line    => "CATALINA_BASE=${tomcat_path}/",
