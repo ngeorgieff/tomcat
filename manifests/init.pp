@@ -178,6 +178,7 @@ if ( $java_version in [ '7', '8' ] ) {
     file { '/usr/java/latest':
         ensure  => link,
         target  => $java_home,
+        require => Exec['set_java_home'],
     }
 
     file_line { 'Adding CATALINA_BASE environment variable':
