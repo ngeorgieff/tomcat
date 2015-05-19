@@ -60,7 +60,7 @@ class tomcat
       # Define  tomcat version. 7 or 8 
       $tomcat_version = hiera('tomcat::tomcat_version','8'),
       # Define mirror (you need to point the URL to /apache/tomcat)
-      $tomcat_mirror = hiera('tomcat::tomcat_mirror','https://is.it.ucla.edu/mirrors/tomcat'),
+      $tomcat_mirror = hiera('tomcat::tomcat_mirror','https://mirror.server.com/mirrors/tomcat'),
       # Define Tomcat7 build
       $tomcat7_build = hiera('tomcat::tomcat7_build','7.0.61'),
       # Define Tomcat8 build
